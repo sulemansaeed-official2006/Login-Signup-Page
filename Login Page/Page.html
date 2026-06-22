@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginPage" class="page active">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <!-- <div class="form-group">
+                    <label for="loginName">Name:</label>
+                    <input type="text" id="loginName" placeholder="Enter your name">
+                    <div class="error-message" id="loginNameError">Please enter your name</div>
+                </div> -->
+                
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                    <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="loginPassword" placeholder="Enter your password">
+                        <button type="button" class="toggle-password" id="toggleLoginPassword">Show</button>
+                    </div>
+                    <div class="error-message" id="loginPasswordError">Password must be at least 6 characters</div>
+                </div>
+                
+                <button type="submit" class="btn">Login</button>
+                
+                <div class="link-container">
+                    <a href="#" class="link" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+                
+                <div class="link-container">
+                    Don't have an account? <a href="#" class="link" id="goToSignup">Sign up</a>
+                </div>
+            </form>
+        </div>
+        
+        <div id="signupPage" class="page">
+            <h2>Register</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Name:</label>
+                    <input type="text" id="signupName" placeholder="Enter your name">
+                    <div class="error-message" id="signupNameError">Please enter your name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email">
+                    <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupCnic">CNIC:</label>
+                    <input type="text" id="signupCnic" placeholder="xxxxx-xxxxxxx-x">
+                    <div class="error-message" id="signupCnicError">CNIC must be in format: xxxxx-xxxxxxx-x</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number:</label>
+                    <input type="text" id="signupPhone" placeholder="03xxxxxxxxx">
+                    <div class="error-message" id="signupPhoneError">Phone number must be 11 digits starting with 03</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupDob">Date of Birth (DOB):</label>
+                    <input type="date" id="signupDob">
+                    <div class="error-message" id="signupDobError">You must be at least 12 years old to register</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="signupPassword" placeholder="Enter your password">
+                        <button type="button" class="toggle-password" id="toggleSignupPassword">Show</button>
+                    </div>
+                    <div class="error-message" id="signupPasswordError">Password must be at least 6 characters</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
+                        <button type="button" class="toggle-password" id="toggleConfirmPassword">Show</button>
+                    </div>
+                    <div class="error-message" id="signupConfirmPasswordError">Passwords do not match</div>
+                </div>
+                
+                <button type="submit" class="btn">Register</button>
+                
+                <div class="link-container">
+                    Already have an account? <a href="#" class="link" id="goToLogin">Login</a>
+                </div>
+            </form>
+        </div>
+        
+        <div id="forgotPasswordPage" class="page">
+            <h2>Recover Password</h2>
+            
+            <div class="step active" id="recoveryMethodStep">
+                <p>Select how you want to recover your password:</p>
+                
+                <div class="recovery-option" id="recoverByEmail">
+                    <h3>Recover by Email</h3>
+                    <p>We'll send a verification code to your email</p>
+                </div>
+                
+                <div class="recovery-option" id="recoverByPhone">
+                    <h3>Recover by Phone</h3>
+                    <p>We'll verify your phone number</p>
+                </div>
+                
+                <div class="link-container">
+                    <a href="#" class="link" id="backToLoginFromForgot">Back to Login</a>
+                </div>
+            </div>
+            
+            <div class="step" id="emailRecoveryStep">
+                <button class="back-btn" id="backToRecoveryMethod">
+                    ← Back
+                </button>
+                
+                <div class="form-group">
+                    <label for="recoveryEmail">Email:</label>
+                    <input type="email" id="recoveryEmail" placeholder="Enter your email">
+                    <div class="error-message" id="recoveryEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="captcha-container">
+                    <div class="captcha-code" id="emailCaptchaCode">A3B7C</div>
+                    <button type="button" class="refresh-captcha" id="refreshEmailCaptcha">↻</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="emailCaptcha">Enter Captcha:</label>
+                    <input type="text" id="emailCaptcha" placeholder="Enter the captcha above">
+                    <div class="error-message" id="emailCaptchaError">Please enter the correct captcha</div>
+                </div>
+                
+                <button class="btn" id="verifyEmailCaptcha">Verify</button>
+            </div>
+            
+            <div class="step" id="phoneRecoveryStep">
+                <button class="back-btn" id="backToRecoveryMethod2">
+                    ← Back
+                </button>
+                
+                <div class="message info" id="phoneMessage">
+                    We'll send a verification code to your phone number ending with <span class="phone-mask" id="phoneLastDigits">****1234</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recoveryPhone">Phone Number:</label>
+                    <input type="text" id="recoveryPhone" placeholder="Enter your full phone number">
+                    <div class="error-message" id="recoveryPhoneError">Phone number must be 11 digits starting with 03</div>
+                </div>
+                
+                <div class="captcha-container">
+                    <div class="captcha-code" id="phoneCaptchaCode">X9Y2Z</div>
+                    <button type="button" class="refresh-captcha" id="refreshPhoneCaptcha">↻</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneCaptcha">Enter Captcha:</label>
+                    <input type="text" id="phoneCaptcha" placeholder="Enter the captcha above">
+                    <div class="error-message" id="phoneCaptchaError">Please enter the correct captcha</div>
+                </div>
+                
+                <button class="btn" id="verifyPhoneCaptcha">Verify</button>
+            </div>
+            
+            <div class="step" id="resetPasswordStep">
+                <h3>Reset Your Password</h3>
+                
+                <div class="form-group">
+                    <label for="newPassword">New Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="newPassword" placeholder="Enter new password">
+                        <button type="button" class="toggle-password" id="toggleNewPassword">Show</button>
+                    </div>
+                    <div class="error-message" id="newPasswordError">Password must be at least 6 characters</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmNewPassword">Confirm New Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmNewPassword" placeholder="Confirm new password">
+                        <button type="button" class="toggle-password" id="toggleConfirmNewPassword">Show</button>
+                    </div>
+                    <div class="error-message" id="confirmNewPasswordError">Passwords do not match</div>
+                </div>
+                
+                <button class="btn" id="saveNewPassword">Save Password</button>
+            </div>
+            
+            <div class="step" id="successStep">
+                <div class="message success">
+                    <h3>Success!</h3>
+                    <p>Your password has been reset successfully.</p>
+                </div>
+                
+                <button class="btn" id="goToLoginAfterReset">Go to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
